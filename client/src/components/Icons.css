@@ -1,0 +1,40 @@
+.imagesPlaceholder{
+    height: 89.8vh;
+    width: 20vw;
+    background-color: rgb(43, 43, 43);
+    display: flex;
+    flex-direction: column;
+    align-items:  center;
+    font-size: 2vh;
+}
+.imagesPlaceholder label{
+    display: flex;
+    justify-content: center;
+}
+.imagesPlaceholder img{
+    width:10vh ;
+    /* 100px */
+}
+
+.topChamp img{
+    width: 20vh;
+}
+.otherImgs{
+    display: flex;
+    gap: 5px;
+}
+.ranks{
+    
+    display: flex;
+    align-items: center;
+    gap: 50px;
+}
+.summonerRanks{
+    width: 100%;
+    background-color: red;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+}

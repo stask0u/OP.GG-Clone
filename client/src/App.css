@@ -1,0 +1,21 @@
+#root {
+  color: white;
+}
+.infoBoard {
+  display: inline-flex;
+  
+}
+.infoBoard .matchHistory div {
+  margin-top: 5px;
+}
+.Icons {
+}
+
+.matchHistory {
+  width: 80vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(77, 76, 76);
+  color: red;
+}

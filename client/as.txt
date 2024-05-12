@@ -1,0 +1,74 @@
+  const imageCache: { [key: string]: string } = {};
+
+  const loadImage = async (imageName: string) => {
+    if (!imageCache[imageName]) {
+      try {
+        const imageModule = await import(`./assets/icons/${imageName}.png`);
+        imageCache[imageName] = imageModule.default;
+        setChampionImage(imageCache[imageName]);
+      } catch (error) {
+        console.error("Error loading image:", error);
+      }
+    } else {
+      setChampionImage(imageCache[imageName]);
+    }
+  };
+
+
+
+
+      const [icon,setChampionIcon] = useState(String);
+
+    //https://cdn.communitydragon.org/14.1.9/champion/1/square
+        const imageCache: { [key: string]: string } = {};
+
+        const loadImage = async (imageName: string) => {
+          if (!imageCache[imageName]) {
+            try {
+              const imageModule = await import(`../assets/profileicon/${imageName}.png`);
+              imageCache[imageName] = imageModule.default;
+              setChampionIcon(imageCache[imageName]);
+            } catch (error) {
+              console.error("Error loading image:", error);
+            }
+          } else {
+            setChampionIcon(imageCache[imageName]);
+          }
+        };
+        if(clicked&&profileIconId)loadImage(profileIconId)
+
+
+
+
+
+
+
+
+
+
+         useEffect(() => {
+        const loadImage = async (championId: ObjectPassed) => {
+            try {
+                if (!championImages[championId.id]) {
+                    const imageLink = `https://cdn.communitydragon.org/14.1.9/champion/${championId.id}/square`
+                    setChampionImages(prevState => ({
+                        ...prevState,
+                        [championId.id]: imageLink
+                    }));
+                    setChampionNames(prevState => ({
+                        ...prevState,
+                        [championId.name]: championId.name
+                    }));
+                }
+            } catch (error) {
+                console.error("Error loading image:", error);
+            }
+        };
+        if(clicked){
+            
+           if(topChamp) loadImage(topChamp);
+            if (SecondChamp) loadImage(SecondChamp);
+            if (ThirdChamp) loadImage(ThirdChamp);
+        }
+       
+    }, [topChamp, SecondChamp, ThirdChamp, championImages]);
