@@ -63,14 +63,14 @@ function Icons({ topChamp, SecondChamp, ThirdChamp, summonerName, profileIconId,
                 <h2>Ranked</h2>
                 <div className="ranks">
                 <div className="Ranked Solo/Duo">
-                    <p>  Solo/Duo</p>
-                    {soloduo && <label>{soloduo.tier} {soloduo.rank} --{soloduo.points}</label>}
-                    <div id="soloduo"> <img src={`https://raw.communitydragon.org/latest/plugins/rcp-fe-lol-static-assets/global/default/images/ranked-emblem/emblem-${soloduo.tier.toString().toLowerCase()}.png`} alt="" /></div>
+                    <p style={{display:"flex",justifyContent:"center"}}>  Solo/Duo</p>
+                    {soloduo && <label>{soloduo.tier} {soloduo.rank} {soloduo.points}LP</label>}
+                    <div id="soloduo"> <img src={`https://opgg-static.akamaized.net/images/medals_new/${soloduo.tier.toString().toLowerCase()}.png?image=q_auto:good,f_webp,w_144&v=1715147216574`} style={{width:"140px"}} alt="" /></div>
                 </div>
                 <div className=" Ranked Flex">
-                    <p>Flex</p>
-                    {flex && <label>{flex.tier} {flex.rank} --{flex.points}</label>}
-                    <div id="flex"> <img src={`https://raw.communitydragon.org/latest/plugins/rcp-fe-lol-static-assets/global/default/images/ranked-emblem/emblem-${flex.tier.toString().toLowerCase()}.png`}  style={{backgroundSize:"cover"}} alt="" /></div>
+                    <p style={{display:"flex",justifyContent:"center"}}>Flex</p>
+                    {flex && <label>{flex.tier} {flex.rank} {flex.points}LP</label>}
+                    <div id="flex"> <img src={`https://opgg-static.akamaized.net/images/medals_new/${flex.tier.toString().toLowerCase()}.png?image=q_auto:good,f_webp,w_144&v=1715147216574`}  style={{width:"140px"}} alt="" /></div>
                 </div>
                 </div>
                 
