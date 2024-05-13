@@ -3,7 +3,7 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const cors = require('cors');
-const apiKey = "RGAPI-795e2196-a9b0-4c7c-b604-fbf19570d8eb"
+const apiKey = "RGAPI-ab9c6771-9f44-45f9-9438-6dfc91b17672"
 
 app.use(express.json());
 app.use(cors());
