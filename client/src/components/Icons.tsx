@@ -59,7 +59,7 @@ function Icons({ topChamp, SecondChamp, ThirdChamp, summonerName, profileIconId,
                 }
             </div>
             {
-                summonerName&&<div className="summonerRanks">
+                summonerName&& (soloduo || flex)&& <div className="summonerRanks">
                 <h2>Ranked</h2>
                 <div className="ranks">
                 <div className="Ranked Solo/Duo">

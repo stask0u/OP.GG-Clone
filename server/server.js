@@ -35,20 +35,36 @@ app.post('/', async (req,res)=>{
         const summonerData= await axios.get(`https://eun1.api.riotgames.com/lol/summoner/v4/summoners/by-puuid/${puuid}?api_key=${apiKey}`);
         const summonerID = summonerData.data.id;
         const ranks = await axios.get(`https://eun1.api.riotgames.com/lol/league/v4/entries/by-summoner/${summonerID}?api_key=${apiKey}`);
-        // console.log(ranks.data[0])
-        const flexData = {
-            tier:ranks.data[0].tier,
-            rank: ranks.data[0].rank,
-            points: ranks.data[0].leaguePoints
+        let flexData;
+        let SoloDuoData;
+        if(ranks.data[0].queueType=="RANKED_SOLO_5x5"){
+            flexData = {
+                tier:ranks.data[1].tier,
+                rank: ranks.data[1].rank,
+                points: ranks.data[1].leaguePoints
+            }
+             SoloDuoData = {
+                tier:ranks.data[0].tier,
+                rank: ranks.data[0].rank,
+                points: ranks.data[0].leaguePoints
+            }
+        }else{
+            flexData = {
+                tier:ranks.data[0].tier,
+                rank: ranks.data[0].rank,
+                points: ranks.data[0].leaguePoints
+            }
+             SoloDuoData = {
+                tier:ranks.data[1].tier,
+                rank: ranks.data[1].rank,
+                points: ranks.data[1].leaguePoints
+            }
         }
-        const SoloDuoData = {
-            tier:ranks.data[1].tier,
-            rank: ranks.data[1].rank,
-            points: ranks.data[1].leaguePoints
-        }
+        
         //get match history aOSaXJGP55zBGcFcNPdnl3Msn1S_ujD39sz4QKGTispQfj0dKB1j7foVBoqejo5mv2tj90OiJ9yI0Q
         const recentMatches = await axios.get(`https://europe.api.riotgames.com/lol/match/v5/matches/by-puuid/${puuid}/ids?start=0&count=20&api_key=${apiKey}`);
         const matchChamp = await axios.get(`https://europe.api.riotgames.com/lol/match/v5/matches/${recentMatches.data[0]}?api_key=${apiKey}`)
+        console.log(matchChamp)
         //group data
         const data = {
             first:Object.values(champData).find(champion => champion.key==highestChamp),
