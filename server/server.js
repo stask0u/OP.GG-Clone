@@ -3,7 +3,7 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const cors = require('cors');
-const apiKey = "RGAPI-ab9c6771-9f44-45f9-9438-6dfc91b17672"
+const apiKey = "RGAPI-e78c1bcf-c91d-47eb-9288-9678534c7708"
 
 app.use(express.json());
 app.use(cors());
@@ -36,7 +36,7 @@ app.post('/', async (req,res)=>{
         const summonerID = summonerData.data.id;
         const ranks = await axios.get(`https://eun1.api.riotgames.com/lol/league/v4/entries/by-summoner/${summonerID}?api_key=${apiKey}`);
         let flexData;
-        let SoloDuoData;
+        let SoloDuoData; 
         if(ranks.data[0].queueType=="RANKED_SOLO_5x5"){
             flexData = {
                 tier:ranks.data[1].tier,
@@ -60,11 +60,20 @@ app.post('/', async (req,res)=>{
                 points: ranks.data[1].leaguePoints
             }
         }
+        //get MMR
+        const baseUrl = "https://api.mylolmmr.com/api";
+        const fullUsername = `${formData.name}#${formData.tag}`
+        const encodedUsername = encodeURIComponent(fullUsername.replace("#", "@"));
+        //420 eun1 euw1
         
+        console.log(encodedUsername);
+        console.log(fullUsername)
+        const mmrData = await axios.get(`${baseUrl}/mmr/eun1/${encodedUsername}/420`);
+        console.log(mmrData.mmr)
         //get match history aOSaXJGP55zBGcFcNPdnl3Msn1S_ujD39sz4QKGTispQfj0dKB1j7foVBoqejo5mv2tj90OiJ9yI0Q
         const recentMatches = await axios.get(`https://europe.api.riotgames.com/lol/match/v5/matches/by-puuid/${puuid}/ids?start=0&count=20&api_key=${apiKey}`);
         const matchChamp = await axios.get(`https://europe.api.riotgames.com/lol/match/v5/matches/${recentMatches.data[0]}?api_key=${apiKey}`)
-        console.log(matchChamp)
+        // console.log(matchChamp)
         //group data
         const data = {
             first:Object.values(champData).find(champion => champion.key==highestChamp),
@@ -79,8 +88,8 @@ app.post('/', async (req,res)=>{
 
 
         res.send(data);
-        console.log(puuid)
-        console.log(summonerID)
+        // console.log(puuid)
+        // console.log(summonerID)
     }catch(err){
         console.log(err)
     }
